@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}{{pet.name}}'s Page{% endblock %}
+
+
+
+{% block content %}
+
+<img src={{pet.photo_url}} alt="pet portrait" class="pet-profile" onerror="replaceImage()">
+<h2>{{pet.name}}</h2>
+<span>Species: {{pet.species}}</span>
+<br>
+{% if pet.age %}
+<span>{{pet.age}}yrs</span>
+{%endif%}
+<br>
+<br>
+
+
+
+
+{% if pet.notes %}
+
+<h3>Notes: </h3>
+<p>{{pet.notes}}</p>
+
+{% endif %}
+
+<h1>Edit {{pet.name}}'s page:</h1>
+
+<form method="post">
+    {{form.hidden_tag()}}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    <p>
+        {{field.label}}
+        {{field}}
+
+        <!-- {% for err in field.error %}
+        <span>{{err}}</span>
+        {% endfor %} -->
+    </p>
+    {% endfor %}
+    <button>Submit</button>
+</form>
+
+
+
+
+
+{% endblock %}

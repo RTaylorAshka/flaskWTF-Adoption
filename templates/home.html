@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+
+{% block content %}
+
+<h1>Pets</h1>
+
+
+{% for pet in pets %}
+
+<div class="pet-display" id = {{pet.id}} onclick="redirect(this)">
+    
+    <img src={{pet.photo_url}} alt="pet photo" class="pet-display" onerror="replaceImage(this)">
+    
+    
+    <a href="/{{pet.id}}" class="pet-display">{{pet.name}}</a>
+    <br>
+    {% if pet.available %}
+    <b class="pet-display">Available</b>
+    {% endif %}
+    
+    
+</div>
+
+
+{% endfor %}
+
+<a href="/add" class = 'button'>Add Pet</a>
+
+
+{% endblock %}
